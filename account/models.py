@@ -10,7 +10,8 @@ class Profile(models.Model):
     # Holds the user's date of birth
     date_of_birth = models.DateField()
     # Holds the profile picture if they provided one
-    picture = models.ImageField(upload_to="users_profile_pic/", blank=True)
+    picture = models.ImageField(upload_to="users_profile_pic/", blank=True,
+                                default="users_profile_pic/default_profile_pic.jpg")
 
     def __str__(self):
         return f"{self.user.username}'s Profile"
