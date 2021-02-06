@@ -12,6 +12,8 @@ class Profile(models.Model):
     # Holds the profile picture if they provided one
     picture = models.ImageField(upload_to="users_profile_pic/", blank=True,
                                 default="users_profile_pic/default_profile_pic.jpg")
+    # User's bio
+    bio = models.CharField(max_length=255, blank=True)
 
     def __str__(self):
         return f"{self.user.username}'s Profile"

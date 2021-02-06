@@ -14,13 +14,14 @@ def register(request):
         if user_form.is_valid() and profile_form.is_valid():
             # Create a new user object but don't save it to the database just yet
             new_user = user_form.save(commit=False)
-            # Set the provided password as this account's password
+            # Set the provided password as this registration's password
             new_user.set_password(user_form.cleaned_data["password"])
-            # Since we got a password for this account save it to the database
+            # Since we got a password for this registration save it to the database
             new_user.save()
-            # Create a profile that corresponds to this user with and set the given birthday
+            # Create a profile that corresponds to this user with and set the given birthday and bio
             profile = Profile.objects.create(user=new_user,
-                                             date_of_birth=profile_form.cleaned_data["date_of_birth"])
+                                             date_of_birth=profile_form.cleaned_data["date_of_birth"],
+                                             bio=profile_form.cleaned_data["bio"])
             # Did the user submit a profile picture?
             # If so set it as their picture otherwise it's blank ("gonna add a default pic later)
             if request.FILES:
@@ -30,7 +31,7 @@ def register(request):
             # A dictionary that holds the data to be sent to the corresponding html page
             context = {"new_user": new_user, "profile_form": profile_form}
             # Everything went well render send the user to the registration success page
-            return render(request, 'account/register_done.html', context)
+            return render(request, 'temp_home.html', context)
 
     # Not a POST request
     else:
@@ -40,4 +41,4 @@ def register(request):
     # A dictionary that holds the data to be sent to the corresponding html page
     context = {"user_form": user_form, "profile_form": profile_form}
     # Registration wasn't successful for some reason so render the registration page with empty forms
-    return render(request, "account/register.html", context)
+    return render(request, "registration/register.html", context)
