@@ -34,13 +34,16 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     # My Apps
     'account.apps.AccountConfig',
-
+    'review.apps.ReviewConfig',
+    # Django apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 3rd Party
+    'taggit',
 ]
 
 MIDDLEWARE = [
