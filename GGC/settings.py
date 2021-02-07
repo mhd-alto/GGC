@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     # My Apps
     'account.apps.AccountConfig',
     'review.apps.ReviewConfig',
+    'thread.apps.ThreadConfig',
     # Django apps
     'django.contrib.admin',
     'django.contrib.auth',

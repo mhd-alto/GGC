@@ -5,7 +5,7 @@ from taggit.managers import TaggableManager
 
 class Review(models.Model):
     """A model that represents a review of something"""
-    # A foreign key to the user when the user is deleted the corresponding review are deleted as well
+    # A foreign key to the user when the user is deleted the corresponding reviews are deleted as well
     author = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="reviews_created", on_delete=models.CASCADE)
     # The review's title
     title = models.CharField(max_length=256)
