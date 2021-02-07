@@ -36,6 +36,8 @@ INSTALLED_APPS = [
     'account.apps.AccountConfig',
     'review.apps.ReviewConfig',
     'thread.apps.ThreadConfig',
+    'trade.apps.TradeConfig',
+    'video.apps.VideoConfig',
     # Django apps
     'django.contrib.admin',
     'django.contrib.auth',
