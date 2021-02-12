@@ -1,6 +1,8 @@
 from django.db import models
 from django.conf import settings
 from taggit.managers import TaggableManager
+from django.contrib.contenttypes.fields import GenericRelation
+from generics.models import Comment
 
 
 class Trade(models.Model):
@@ -26,3 +28,5 @@ class Trade(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     # Tags to mark the post
     tags = TaggableManager()
+    # Post's comments
+    comments = GenericRelation(Comment)

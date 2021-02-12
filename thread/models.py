@@ -1,6 +1,8 @@
 from django.db import models
 from django.conf import settings
 from taggit.managers import TaggableManager
+from django.contrib.contenttypes.fields import GenericRelation
+from generics.models import Comment
 
 
 class Thread(models.Model):
@@ -20,3 +22,5 @@ class Thread(models.Model):
     is_open = models.BooleanField(default=True)
     # Tags to mark the post
     tags = TaggableManager()
+    # Post's comments
+    comments = GenericRelation(Comment)
