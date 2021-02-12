@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from taggit.managers import TaggableManager
+from generics.models import Category
 
 
 class Review(models.Model):
@@ -21,6 +22,8 @@ class Review(models.Model):
     verdict = models.CharField(max_length=1, choices=VERDICT_CHOICES)
     # Tags to mark the review
     tags = TaggableManager()
+    # Post's category
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     # The users who liked the review
     users_likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='reviews_liked', blank=True)
     # Number of likes

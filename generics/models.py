@@ -5,7 +5,7 @@ from django.contrib.contenttypes.models import ContentType
 
 
 class Comment(models.Model):
-    """A model that represent a generic comment"""
+    """A model that represents a generic comment"""
     # Owner of the comment
     author = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="comments_created", on_delete=models.CASCADE)
     # The comment body
@@ -30,3 +30,11 @@ class Comment(models.Model):
     # The related object based on the combination of the two previous fields
     # NOTE: It has no field in the database
     content_object = GenericForeignKey()
+
+
+class Category(models.Model):
+    name = models.CharField(max_length=255)
+    slug = models.SlugField(max_length=255)
+
+    def __str__(self):
+        return self.name

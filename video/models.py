@@ -2,7 +2,7 @@ from django.db import models
 from django.conf import settings
 from taggit.managers import TaggableManager
 from django.contrib.contenttypes.fields import GenericRelation
-from generics.models import Comment
+from generics.models import Comment, Category
 
 
 class Video(models.Model):
@@ -20,6 +20,8 @@ class Video(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     # Tags to mark the post
     tags = TaggableManager()
+    # Post's category
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     # Users who liked this post
     users_likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='videos_liked', blank=True)
     # Number of likes
