@@ -3,7 +3,6 @@ from django.conf import settings
 from taggit.managers import TaggableManager
 
 
-# Create your models here.
 class Video(models.Model):
     # A foreign key to the user when the user is deleted the corresponding threads are deleted as well
     author = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="videos_created", on_delete=models.CASCADE)
