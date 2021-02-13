@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"0>
+    <title>Review</title>
+    <style>
+        .box{
+            border: 2px solid black;
+            width: 100%;
+            position: relative;
+            max-width: 330px;
+            padding: 15px;
+            margin: auto;
+
+            }
+        .author{
+            width: 100%;
+            max-width: 330px;
+            margin: auto;
+
+        }
+    </style>
+    </head>
+<body>
+             <h1>Reviews: {{count}}</h1>
+            <form method="POST" action="{% url 'review' %}">
+                {% csrf_token %}
+                <a href="{% url 'addreview' %}">Add a Review</a><br>
+                <br>
+            </form>
+            {%for forum in forums %}
+                <div class="author"><p> Author: {{ request.user.username }} </p></body>
+                <div class="box">
+                <b>{{forum.title}}</b></div>
+                </div>
+                 <div class="box">
+                    <p>{{forum.body}}</p>
+                 </div>
+            <br>
+
+            {%endfor%}
+</body>
+</html>
