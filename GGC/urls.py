@@ -25,6 +25,7 @@ urlpatterns = [
     path('trade/', include("trade.urls")),
     path('thread/', include("thread.urls")),
     path('review/', include("review.urls")),
+    path('video/', include("video.urls")),
     path('admin/', admin.site.urls),
     path('', TemplateView.as_view(template_name="temp_home.html"), name="home"),
 ]
