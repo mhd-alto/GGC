@@ -6,10 +6,16 @@
 </head>
 <body>
 {% include 'temp_home.html' %}
-    <h1>Videos: {{ count }}</h1><a href="{% url 'video' %}">Add a video</a><br>
+<a href="{% url 'home' %}">Home</a>
+    <h1>Videos: {{ count }}</h1><a href="{% url 'videoadd' %}">Add a video</a><br>
     {% for video in videos %}
-        {{ video.autho|linebreaks }}
+        {{ video.author|linebreaks }}
         {{video.title|linebreaks}}
+        Tags:
+        {% for tag in video.tags.all %}
+            {{ tag.name }}
+        {% endfor %}<br>
+
         {{video.description|linebreaks}}
         <iframe width="710" height="423"
             src="{{ video.url}}">

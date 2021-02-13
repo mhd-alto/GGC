@@ -7,4 +7,4 @@ class VideoForm(forms.ModelForm):
         # The model this form class represents
         model = Video
         # The form's fields
-        fields = ("title", "description", "url", "category")
+        fields = ("title", "description", "tags", "url", "category")

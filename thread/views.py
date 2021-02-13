@@ -33,6 +33,8 @@ def add_thread(request):
             new_form.slug = slugify(new_form.title)
             # save thread
             new_form.save()
+            # save tags
+            form.save_m2m()
             # to go to thread page
             return redirect('thread')
     else:
@@ -53,6 +55,10 @@ def edit_thread(request, thread_id):
         thread_form = ThreadForm(data=request.POST, instance=thread_to_edit)
         #  The data are valid ?
         if thread_form.is_valid():
+            thread_form.save(commit=False)
+            # save tags
+            thread_form.save_m2m()
+            # save form
             thread_form.save()
             # where the thread was updated ...
             return HttpResponse("thread was updated successfully")

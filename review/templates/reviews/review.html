@@ -25,6 +25,7 @@
     </style>
     </head>
 <body>
+<a href="{% url 'home' %}">Home</a>
              <h1>Reviews: {{count}}</h1>
             <form method="POST" action="{% url 'review' %}">
                 {% csrf_token %}
@@ -34,7 +35,13 @@
             {%for forum in forums %}
                 <div class="author"><p> Author: {{ request.user.username }} </p></body>
                 <div class="box">
-                <b>{{forum.title}}</b></div>
+                <b>{{forum.title}}</b>
+                <br>
+                {% for tag in forum.tags.all %}
+                {{ tag.name }}
+                {% endfor %}
+
+                </div>
                 </div>
                  <div class="box">
                     <p>{{forum.body}}</p>

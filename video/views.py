@@ -19,8 +19,10 @@ def add_video(request):
             new_form.slug = slugify(new_form.title)
             # Since we got a video for save it to the database
             new_form.save()
+            # SAve tags
+            form.save_m2m()
             # Everything went well render send the user to the registration success page
-            return redirect('videoR')
+            return redirect('video')
 
     # Not a POST request
     else:

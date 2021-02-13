@@ -32,6 +32,8 @@ def add_in_trade(request):
                 new_trade_form.image = request.FILES["image"]
             # save trade
             new_trade_form.save()
+            # save tags
+            trade_form.save_m2m()
             # to go to trade page
             return redirect('trade_page')
     else:

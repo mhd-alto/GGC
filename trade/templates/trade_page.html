@@ -7,12 +7,13 @@
         <title>DataFlair discussion trade</title>
         <style>
             .box{
-                border: 4px solid black;
+                border: 4px solid #000000;
                 margin: 0 auto;
                 }
         </style>
     </head>
     <body>
+    <a href="{% url 'home' %}">Home</a>
         <h2 class="jumbotron">
             Currently active trade: {{count}}
         <a href="{% url 'add_in_trade' %}">Add Trade</a>
@@ -23,11 +24,15 @@
                     <br>
                     <div class="card-body container">
                         <h1>{{ trade.title }}</h1><br>
+                    tags:
+                        {% for tag in trade.tags.all %}
+                            {{ tag.name }}
+                        {% endfor %}
+                    <br>
                         <h2>{{ trade.author }}</h2>
                         <h2>{{ trade.description }}</h2><br>
                         <p>{{ trade.price }}</p>
                         <p>{{ trade.city }}</p>
-                        <p>{{ trade.tags }}</p>
 
                     {% if  trade.image  %}
                         <img src="{{ trade.image.url }}" height="400px" width="400px">

@@ -32,6 +32,8 @@ def add_review(request):
             new_form.slug = slugify(new_form.title)
             # save review
             new_form.save()
+            # save tags
+            form.save_m2m()
             # to go to review page
             return redirect('review')
     else:

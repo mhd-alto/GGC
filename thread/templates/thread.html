@@ -14,6 +14,7 @@
     </style>
 </head>
 <body>
+<a href="{% url 'home' %}">Home</a>
         <h2 class="jumbotron">
              active forums: {{count}}
             <form method="POST" action="{% url 'addthread' %}">
@@ -30,7 +31,10 @@
                     <br>
                     <h5 class="card-title">
                         <h3>{{forum.title}}</h3>
-                        <h4>{{ forum.tags }}</h4>
+                    Tags:
+                        {% for tag in forum.tags.all %}
+                        {{ tag.name }}
+                        {% endfor %}
                         <div class="card-body container">
                                 <p>{{forum.description}}</p>
                             </h5>
