@@ -137,4 +137,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'login'
 
-
+# Temp smtp server to reset password during development
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
