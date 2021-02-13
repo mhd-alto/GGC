@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import ThreadForm
 from django.utils.text import slugify
 from .models import Thread
+from django.http import HttpResponse
 
 
 def thread(request):
@@ -41,3 +42,21 @@ def add_thread(request):
     context = {'form': form}
     # to represent add thread page
     return render(request, 'addInThread.html', context)
+
+
+def edit_thread(request, thread_id):
+    """EDIT THE THREAD"""
+    # gets the object with the primary key from Thread
+    thread_to_edit = Thread.objects.get(id=thread_id)
+    # Does  is all data ?
+    if request.method == "POST":
+        thread_form = ThreadForm(data=request.POST, instance=thread_to_edit)
+        #  The data are valid ?
+        if thread_form.is_valid():
+            thread_form.save()
+            # where the thread was updated ...
+            return HttpResponse("thread was updated successfully")
+    else:
+        thread_form = ThreadForm(instance=thread_to_edit)
+    # Everything went well render send the user to the success page
+    return render(request, "edit.html", {"form": thread_form})
