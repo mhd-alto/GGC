@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>DataFlair discussion trade</title>
+        <style>
+            .box{
+                border: 4px solid black;
+                margin: 0 auto;
+                }
+        </style>
+    </head>
+    <body>
+        <h2 class="jumbotron">
+            Currently active trade: {{count}}
+        <a href="{% url 'add_in_trade' %}">Add Trade</a>
+        </h2>
+        <div class="card-columns" style="padding: 10px; margin: 20px;"></div>
+            {%for trade in trades %}
+                <div class="card box container">
+                    <br>
+                    <div class="card-body container">
+                        <h1>{{ trade.title }}</h1><br>
+                        <h2>{{ trade.author }}</h2>
+                        <h2>{{ trade.description }}</h2><br>
+                        <p>{{ trade.price }}</p>
+                        <p>{{ trade.city }}</p>
+                        <p>{{ trade.tags }}</p>
+
+                    {% if  trade.image  %}
+                        <img src="{{ trade.image.url }}" height="400px" width="400px">
+
+                    {% endif %}
+                        <hr>
+                        {% if trade.is_available %}
+                            <p>not sold yet</p>
+                        {% else %}
+                            <p>sold</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <br>
+            {%endfor%}
+</body>
+</html>
+
